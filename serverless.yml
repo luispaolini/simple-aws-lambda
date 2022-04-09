@@ -7,6 +7,16 @@ provider:
   region: us-east-1
   timeout: 10
   memorySize: 1024
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 's3:*'
+      Resource:
+        - 'arn:aws:s3:::${self:custom.myBucket}/*'
+        - !Join [ '', [ 'arn:aws:s3:::', !Ref ServerlessDeploymentBucket, '/*' ] ]
+
+custom:
+  myBucket: mbda-custom-bucket
 
 package:
   artifact: target/simple-aws-lambda.jar
@@ -22,6 +32,11 @@ functions:
       - http:
           path: /simple-http
           method: post
-    environment:
-      MESSAGE: DemoTest
-
+  simpleEventTrigger:
+    handler: org.mbda.SimpleEventHandler
+    events:
+      - s3:
+          bucket: ${self:custom.myBucket}
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .png
