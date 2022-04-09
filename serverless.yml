@@ -16,4 +16,12 @@ functions:
     handler: org.mbda.SimpleLambda
     environment:
       MESSAGE: DemoTest
+  simpleHttp:
+    handler: org.mbda.SimpleHttpHandler
+    events:
+      - http:
+          path: /simple-http
+          method: post
+    environment:
+      MESSAGE: DemoTest
 
