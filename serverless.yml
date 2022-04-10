@@ -40,3 +40,7 @@ functions:
           event: s3:ObjectCreated:*
           rules:
             - suffix: .png
+  simpleScheduledTrigger:
+    handler: org.mbda.SimpleScheduledHandler
+    events:
+      - schedule: rate(1 minute)
