@@ -44,3 +44,5 @@ functions:
     handler: org.mbda.SimpleScheduledHandler
     events:
       - schedule: rate(1 minute)
+  fullControlLambda:
+    handler: org.mbda.FullControlLambda

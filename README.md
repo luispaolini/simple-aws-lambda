@@ -6,4 +6,5 @@ Some aws lambda examples using serverless framework and java.
 2. Lambda Function with HTTP trigger
 3. Lambda Function with S3 trigger
 4. Lambda Function with Scheduled trigger
+5. Lambda Function Parsing JSON
 
